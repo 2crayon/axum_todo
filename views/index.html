@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script defer src="/static/index.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {};
@@ -13,46 +14,47 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TODO app</title>
+    <title>A todo app</title>
   </head>
 
-  <body class="bg-stone-200">
+  <body class="bg-stone-200 pb-[200px]">
     <header class="flex p-5 justify-center text-blue-500 drop-shadow-md">
       <h1 class="text-2xl font-bold">
-        My <span class="underline underline-offset-4">todo</span> app! 📝
+        A <span class="underline underline-offset-4">todo</span> app! 📝
       </h1>
     </header>
 
-    <main class="flex justify-center">
+    <main class="mx-auto max-w-[min(400px,100%-40px)]">
       <form
-        hx-post="/todo"
-        hx-target="#todo-list"
-        hx-swap="innerHTML"
-        hx-ext="json-enc"
-        class="flex flex-col w-1/2 p-5 bg-white rounded-lg shadow-lg"
+        id="new-todo-form"
+        class="flex flex-col p-5 bg-white rounded-lg shadow-lg"
       >
         <div class="flex flex-col mb-5">
-          <label for="todo" class="mb-2 font-bold text-blue-500">
+          <label for="content" class="mb-2 font-bold text-blue-500">
             New todo
           </label>
-          <input
+          <textarea
             type="text"
-            name="todo"
-            id="todo"
-            class="px-3 py-2 border border-blue-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          />
+            name="content"
+            id="content"
+            class="px-3 py-2 min-h-[100px] border border-blue-300 leading-tight rounded-md shadow-md outline-none focus:ring-2 focus:ring-blue-500"
+          ></textarea>
         </div>
         <button
-          class="px-3 py-2 text-white bg-blue-500 rounded-md shadow-sm hover:bg-blue-600"
+          type="submit"
+          class="py-2 text-white bg-blue-500 font-semibold rounded-md shadow-md"
         >
           Add todo
         </button>
       </form>
 
-      <ul
-        id="todo-list"
-        class="flex flex-col w-1/2 p-5 mt-5 bg-white rounded-lg shadow-lg"
-      ></ul>
+      <ul id="todo-list" class="flex flex-col mt-7 gap-3"></ul>
     </main>
+    <button
+      onclick="clearDoneTodos()"
+      class="fixed bg-blue-500 text-white font-semibold p-2 bottom-4 rounded-lg shadow-xl left-1/2 -translate-x-1/2"
+    >
+      Clear all completed
+    </button>
   </body>
 </html>

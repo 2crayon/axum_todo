@@ -9,10 +9,10 @@ pub struct Todo {
 }
 
 impl Todo {
-    pub fn new(content: String) -> Todo {
+    pub fn new(content: &str) -> Todo {
         Todo {
             id: rand::thread_rng().gen(),
-            content,
+            content: content.to_string(),
             done: false,
         }
     }
@@ -27,5 +27,9 @@ impl Todo {
 
     pub fn done(&self) -> bool {
         self.done
+    }
+
+    pub fn set_done(&mut self, done: bool) {
+        self.done = done;
     }
 }
