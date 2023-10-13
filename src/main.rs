@@ -31,7 +31,6 @@ async fn main() {
         .nest(
             "/api",
             Router::new()
-                // routing for add_todo, list_todos and delete_todo
                 .route("/todos", post(add_todo).get(list_todos))
                 .route("/todos/:id", delete(delete_todo))
                 .route("/todos/:id/toggle", put(toggle_todo))
